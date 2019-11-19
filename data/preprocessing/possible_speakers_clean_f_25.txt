@@ -1,0 +1,96 @@
+19   | F | train-clean-100  | 25.19 | Kara Shallenberg
+39   | F | train-clean-100  | 25.05 | Sherry Crowther
+40   | F | train-clean-100  | 25.04 | Vicki Barbour
+83   | F | train-clean-100  | 25.04 | Catharine Eastman
+87   | F | train-clean-100  | 25.10 | Rosalind Wills
+89   | F | train-clean-100  | 25.08 | Kristen McQuillin
+125  | F | train-clean-100  | 25.18 | Claire Goget
+150  | F | train-clean-100  | 25.13 | Fox in the Stars
+198  | F | train-clean-100  | 25.02 | Heather Barnett
+200  | F | train-clean-100  | 25.14 | Maureen S. O'Brien
+211  | F | train-clean-100  | 25.22 | shanda_w
+226  | F | train-clean-100  | 25.21 | Deb Bacon-Ziegler
+248  | F | train-clean-100  | 25.13 | Becky Miller
+250  | F | train-clean-100  | 25.16 | Mary Reagan
+298  | F | train-clean-100  | 25.00 | Caroline Morse
+302  | F | train-clean-100  | 25.04 | Chris Peterson
+322  | F | train-clean-100  | 25.20 | Elisabeth Shields
+403  | F | train-clean-100  | 25.14 | Nocturna
+426  | F | train-clean-100  | 25.21 | Norah Piehl
+441  | F | train-clean-100  | 25.19 | Sandra in Wales, United Kingdom
+587  | F | train-clean-100  | 25.20 | Joy Scaglione
+669  | F | train-clean-100  | 25.17 | Anne
+696  | F | train-clean-100  | 25.11 | Tamara R. Schwartz
+730  | F | train-clean-100  | 25.19 | Karen Labenz
+887  | F | train-clean-100  | 25.11 | Lana Taylor
+1069 | F | train-clean-100  | 25.15 | Dawn
+1088 | F | train-clean-100  | 25.18 | Christabel
+1116 | F | train-clean-100  | 25.12 | Megan Stemm-Wade
+1246 | F | train-clean-100  | 25.09 | Sandra
+1263 | F | train-clean-100  | 25.16 | Leonie Rose
+1447 | F | train-clean-100  | 25.18 | Luigina
+1502 | F | train-clean-100  | 25.05 | Ann Boyer
+1578 | F | train-clean-100  | 25.01 | Lorelle Anderson
+1737 | F | train-clean-100  | 25.04 | Erin Hastings
+1841 | F | train-clean-100  | 25.13 | Laura Caldwell
+1898 | F | train-clean-100  | 25.01 | Jennifer
+1926 | F | train-clean-100  | 25.19 | Nikki Sullivan
+1963 | F | train-clean-100  | 25.19 | Belinda Brown
+1970 | F | train-clean-100  | 25.13 | Dawn Larsen
+2007 | F | train-clean-100  | 25.21 | Sheila Morton
+2092 | F | train-clean-100  | 25.10 | Elaine Hamby
+2182 | F | train-clean-100  | 25.15 | Susan Umpleby
+2196 | F | train-clean-100  | 25.24 | Andrea Fiore
+2416 | F | train-clean-100  | 25.17 | Julia Albath
+2691 | F | train-clean-100  | 25.16 | Donna Stewart
+2764 | F | train-clean-100  | 25.19 | Piper Hale
+2817 | F | train-clean-100  | 25.14 | Catherine Millward
+2836 | F | train-clean-100  | 25.12 | Linda McDaniel
+2989 | F | train-clean-100  | 25.21 | Jamie Strassenburg, Cypress, California
+3112 | F | train-clean-100  | 25.08 | Jessica Louise
+3259 | F | train-clean-100  | 25.19 | Kate West
+3440 | F | train-clean-100  | 25.18 | Heidi Will
+3526 | F | train-clean-100  | 25.18 | Bereni
+3879 | F | train-clean-100  | 25.10 | Keneva
+3982 | F | train-clean-100  | 25.07 | Kate Adams
+3983 | F | train-clean-100  | 25.01 | lavocedorata
+4051 | F | train-clean-100  | 25.14 | Liz Devens
+4088 | F | train-clean-100  | 25.15 | Blazin48
+4160 | F | train-clean-100  | 25.09 | Rosie
+4195 | F | train-clean-100  | 25.08 | bj
+4297 | F | train-clean-100  | 25.04 | Tina Horning
+4362 | F | train-clean-100  | 25.18 | Michelle Montano
+4640 | F | train-clean-100  | 25.06 | Karen Mason
+4680 | F | train-clean-100  | 25.15 | pachayes
+4853 | F | train-clean-100  | 25.04 | Barbara Derksen
+5022 | F | train-clean-100  | 25.12 | Kathleen Costa
+5339 | F | train-clean-100  | 25.13 | Lauren McCullough
+5393 | F | train-clean-100  | 25.22 | Amy Hengst
+5652 | F | train-clean-100  | 25.05 | amicrazy2u
+5688 | F | train-clean-100  | 25.17 | Jennifer Dionne
+5789 | F | train-clean-100  | 25.16 | Kirsten Wever
+6064 | F | train-clean-100  | 25.04 | Deborah Knight
+6078 | F | train-clean-100  | 25.02 | dobsonfly
+6147 | F | train-clean-100  | 25.05 | Liberty Stump
+6272 | F | train-clean-100  | 25.14 | jlenardon
+6385 | F | train-clean-100  | 25.09 | Novella Serena
+6415 | F | train-clean-100  | 25.18 | Daryl Wor
+6476 | F | train-clean-100  | 25.17 | Viridian
+6818 | F | train-clean-100  | 25.17 | beckyboyd
+7059 | F | train-clean-100  | 25.02 | Joannemmp
+7078 | F | train-clean-100  | 25.14 | Mary in Arkansas
+7113 | F | train-clean-100  | 25.20 | Sukaina Jaffer
+7148 | F | train-clean-100  | 25.02 | Vickie Ranz
+7178 | F | train-clean-100  | 25.11 | J.K. Neely
+7302 | F | train-clean-100  | 25.10 | Asta1234
+7511 | F | train-clean-100  | 25.00 | Sherri Vance
+7635 | F | train-clean-100  | 25.06 | Judy Guinan
+7794 | F | train-clean-100  | 25.23 | mlcui
+7800 | F | train-clean-100  | 25.21 | Arie
+8051 | F | train-clean-100  | 25.23 | Maria Kasper
+8123 | F | train-clean-100  | 25.15 | Sheila Wood
+8238 | F | train-clean-100  | 25.08 | Madam Fickle
+8312 | F | train-clean-100  | 25.14 | Jaimie Noy
+8324 | F | train-clean-100  | 25.16 | Kathy Wright
+8468 | F | train-clean-100  | 25.23 | Jennifer Dorr
+8975 | F | train-clean-100  | 25.11 | Daisy Flaim
