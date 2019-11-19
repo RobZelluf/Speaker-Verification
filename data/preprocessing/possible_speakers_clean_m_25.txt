@@ -1,0 +1,91 @@
+26   | M | train-clean-100  | 25.08 | Denny Sayers
+78   | M | train-clean-100  | 25.05 | Hugh McGuire
+118  | M | train-clean-100  | 25.05 | Alex Buie
+163  | M | train-clean-100  | 25.06 | Andrew Miller
+196  | M | train-clean-100  | 25.24 | Stewart Wills
+201  | M | train-clean-100  | 25.19 | Joplin James
+254  | M | train-clean-100  | 25.06 | Alan Davis Drake (1945-2010)
+307  | M | train-clean-100  | 25.11 | Randy Phillips
+311  | M | train-clean-100  | 25.17 | deadwhitemales
+374  | M | train-clean-100  | 25.16 | kumarei
+405  | M | train-clean-100  | 25.04 | Eric Dennison
+446  | M | train-clean-100  | 25.00 | Steve Hartzog
+460  | M | train-clean-100  | 25.23 | Dave Ranson
+481  | M | train-clean-100  | 25.08 | Neal Foley
+625  | M | train-clean-100  | 25.01 | toriasuncle
+831  | M | train-clean-100  | 25.22 | Nick Gallant
+909  | M | train-clean-100  | 25.00 | Greg Bryant
+1081 | M | train-clean-100  | 25.18 | Fracture
+1235 | M | train-clean-100  | 25.09 | Tim Gregory
+1455 | M | train-clean-100  | 25.13 | webslog
+1594 | M | train-clean-100  | 25.10 | Jon Scott Jones
+1723 | M | train-clean-100  | 25.12 | Rob Whelan
+1867 | M | train-clean-100  | 25.16 | Rowdy Delaney
+2136 | M | train-clean-100  | 25.18 | Great Plains
+2159 | M | train-clean-100  | 25.12 | Matthew Westra
+2289 | M | train-clean-100  | 25.08 | David Kleparek
+2436 | M | train-clean-100  | 25.15 | Seth Adam Sher
+2514 | M | train-clean-100  | 25.11 | S. Young
+2518 | M | train-clean-100  | 25.06 | Rob Powell
+2843 | M | train-clean-100  | 25.18 | ricell
+2911 | M | train-clean-100  | 25.10 | David Lawrence
+2952 | M | train-clean-100  | 25.02 | Scott Carpenter
+3214 | M | train-clean-100  | 25.08 | fourteatoo
+3240 | M | train-clean-100  | 25.09 | flakker
+3242 | M | train-clean-100  | 25.03 | peac
+3374 | M | train-clean-100  | 25.17 | Craig Campbell
+3436 | M | train-clean-100  | 25.25 | Anders Lankford
+3486 | M | train-clean-100  | 25.08 | Robin Balmer
+3664 | M | train-clean-100  | 25.06 | Barry Eads
+3699 | M | train-clean-100  | 25.15 | Bruce Pirie
+3723 | M | train-clean-100  | 25.07 | Kevin Lavin
+3857 | M | train-clean-100  | 25.17 | Epistomolus
+4014 | M | train-clean-100  | 25.20 | Tom Clifton
+4018 | M | train-clean-100  | 25.17 | Nicholas Clifford
+4267 | M | train-clean-100  | 25.14 | Ric F
+4397 | M | train-clean-100  | 25.06 | John Dennison
+4406 | M | train-clean-100  | 25.12 | Matthew Scott Surprenant
+4441 | M | train-clean-100  | 25.06 | William Peck
+4788 | M | train-clean-100  | 25.04 | Bill Boerst
+4813 | M | train-clean-100  | 25.12 | Steve Mattern
+4898 | M | train-clean-100  | 25.11 | greatbasinrain
+5049 | M | train-clean-100  | 25.08 | Bradley Smith
+5104 | M | train-clean-100  | 25.03 | Chuck Burke
+5322 | M | train-clean-100  | 25.03 | Jay Bidal
+5390 | M | train-clean-100  | 25.20 | Charles Bice
+5463 | M | train-clean-100  | 25.00 | GLM
+5678 | M | train-clean-100  | 25.10 | jgoffena
+5703 | M | train-clean-100  | 25.10 | Garth Comira
+5750 | M | train-clean-100  | 25.08 | laurencetrask
+5808 | M | train-clean-100  | 25.16 | jeandelfrio
+6019 | M | train-clean-100  | 25.17 | DerekP
+6081 | M | train-clean-100  | 25.10 | Lazuli
+6181 | M | train-clean-100  | 25.09 | Mike
+6209 | M | train-clean-100  | 25.04 | deckerteach
+6367 | M | train-clean-100  | 25.04 | Vince Dee
+6437 | M | train-clean-100  | 25.09 | John Hoerr
+6454 | M | train-clean-100  | 25.22 | David Wales
+6529 | M | train-clean-100  | 25.04 | Fred DeBerardinis
+6836 | M | train-clean-100  | 25.01 | John
+6848 | M | train-clean-100  | 25.17 | KarlHenning
+6880 | M | train-clean-100  | 25.10 | Capybara
+7067 | M | train-clean-100  | 25.17 | Matthew Wall
+7190 | M | train-clean-100  | 25.22 | Tony Posante
+7226 | M | train-clean-100  | 25.05 | Jonathan Moore
+7278 | M | train-clean-100  | 25.01 | Jon Smith
+7367 | M | train-clean-100  | 25.13 | NIneFive83
+7402 | M | train-clean-100  | 25.01 | Canby Ibarra
+7447 | M | train-clean-100  | 25.24 | dasbury
+7505 | M | train-clean-100  | 25.13 | Ron Lockhart
+8063 | M | train-clean-100  | 25.08 | Robert Snoza
+8088 | M | train-clean-100  | 25.06 | Jason Bolestridge
+8095 | M | train-clean-100  | 25.03 | Theodulf
+8098 | M | train-clean-100  | 25.18 | Arnold
+8108 | M | train-clean-100  | 25.03 | drakaunus
+8226 | M | train-clean-100  | 25.18 | Adam Picot
+8419 | M | train-clean-100  | 25.22 | Jon Kissack
+8425 | M | train-clean-100  | 25.16 | Larry Wilson
+8609 | M | train-clean-100  | 25.10 | noblesavage
+8629 | M | train-clean-100  | 25.13 | Shivansh Dhar
+8770 | M | train-clean-100  | 25.13 | Paul Simonin
+8838 | M | train-clean-100  | 25.06 | Kevin Owens
