@@ -12,8 +12,9 @@ def get_accuracy(logits, target):
     accuracy = 100.0 * corrects / len(target)
     return accuracy.item()
 
+
 X, Y = read_data()
-num_speakers = np.max(Y) + 1
+num_speakers = len(Y[0])
 
 X = torch.from_numpy(X)
 X = X.flatten(1, -1)
