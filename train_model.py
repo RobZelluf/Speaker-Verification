@@ -2,6 +2,7 @@ import numpy as np
 from utils import read_data
 from Model import *
 import torch
+import torch.nn.functional as F
 
 if torch.cuda.is_available():
     print("Using GPU!")
@@ -28,14 +29,15 @@ Y = torch.from_numpy(Y)
 
 model = Model(input_dim, num_speakers)
 optimizer = optim.Adam(model.parameters(), lr=0.001)
+criterion = torch.nn.CrossEntropyLoss()
 
 iterations = 1000
 for i in range(iterations):
     y = model.forward(X)
 
-    loss = torch.nn.CrossEntropyLoss()(y, Y)
-    loss.backward()
     optimizer.zero_grad()
+    loss = criterion(y, Y)
+    loss.backward()
     optimizer.step()
     print("Iteration", i, "out of", iterations, ". Loss:", round(float(loss.detach()), 2), "- Accuracy", get_accuracy(y, Y))
 
