@@ -3,6 +3,9 @@ from utils import read_data
 from Model import *
 import torch
 
+if torch.cuda.is_available():
+    print("Using GPU!")
+    torch.cuda.set_device(0)
 
 def get_accuracy(logits, target):
     """ compute accuracy for training round """
