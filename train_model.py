@@ -29,7 +29,7 @@ Y = torch.from_numpy(Y)
 
 model = Model(input_dim, num_speakers)
 optimizer = optim.Adam(model.parameters(), lr=0.001)
-criterion = torch.nn.CrossEntropyLoss()
+criterion = torch.nn.NLLLoss()
 
 iterations = 1000
 for i in range(iterations):
