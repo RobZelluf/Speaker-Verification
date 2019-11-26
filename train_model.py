@@ -31,7 +31,7 @@ model = Model(input_dim, num_speakers)
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 criterion = torch.nn.NLLLoss()
 
-iterations = 1000
+iterations = 100000
 for i in range(iterations):
     y = model.forward(X)
 
@@ -39,5 +39,5 @@ for i in range(iterations):
     loss = criterion(y, Y)
     loss.backward()
     optimizer.step()
-    print("Iteration", i, "out of", iterations, ". Loss:", round(float(loss.detach()), 2), "- Accuracy", get_accuracy(y, Y))
+    print("Iteration {} out of {}. Loss: {}. Accuracy {}.".format(i, iterations, loss.detach(), get_accuracy(y, Y)))
 
