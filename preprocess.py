@@ -21,13 +21,14 @@ for file in os.listdir(DIR):
         data = p.load(f)
         num_fragments = len(data)
         X.extend(data)
-        labels = num_fragments * [ID]
+        labels = [ID] * num_fragments
         Y.extend(labels)
 
     ID += 1
 
 X = np.array(X)
 Y = np.array(Y)
+
 
 with open("data/processed/data.p", "wb") as f:
     data = [X, Y]
