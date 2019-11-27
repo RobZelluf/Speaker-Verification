@@ -5,7 +5,7 @@ import torch.nn.functional as F
 
 
 class Model(nn.Module):
-    def __init__(self, input_dim, num_speakers):
+    def __init__(self, num_speakers):
         super(Model, self).__init__()
         self.num_speakers = num_speakers
 

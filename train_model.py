@@ -1,12 +1,13 @@
 import numpy as np
 from utils import read_data
-from Model import *
+from CNN import *
 import torch
 import torch.nn.functional as F
 
 if torch.cuda.is_available():
     print("Using GPU!")
     torch.cuda.set_device(0)
+
 
 def get_accuracy(logits, target):
     """ compute accuracy for training round """
@@ -27,17 +28,17 @@ X = X.reshape((m, 1, input_dim[0], input_dim[1]))
 
 Y = torch.from_numpy(Y)
 
-model = Model(input_dim, num_speakers)
+model = Model(num_speakers)
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 criterion = torch.nn.NLLLoss()
 
 iterations = 100000
 for i in range(iterations):
-    y = model.forward(X)
+    y_pred = model.forward(X)
 
     optimizer.zero_grad()
-    loss = criterion(y, Y)
+    loss = criterion(y_pred, Y)
     loss.backward()
     optimizer.step()
-    print("Iteration {} out of {}. Loss: {}. Accuracy {}.".format(i, iterations, loss.detach(), get_accuracy(y, Y)))
+    print("Iteration {} out of {}. Loss: {}. Accuracy {}.".format(i, iterations, loss.detach(), get_accuracy(y_pred, Y)))
 
