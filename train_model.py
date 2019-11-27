@@ -32,13 +32,21 @@ model = Model(num_speakers)
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 criterion = torch.nn.NLLLoss()
 
+batch_size = 100
+
 iterations = 100000
 for i in range(iterations):
-    y_pred = model.forward(X)
+    train_mask = np.random.choice(m - 1, batch_size)
+    X_train = X[train_mask]
+    Y_train = Y[train_mask]
+
+    y_pred = model(X_train)
 
     optimizer.zero_grad()
-    loss = criterion(y_pred, Y)
+    loss = criterion(y_pred, Y_train)
     loss.backward()
     optimizer.step()
+
+    y_pred = model(X)
     print("Iteration {} out of {}. Loss: {}. Accuracy {}.".format(i, iterations, loss.detach(), get_accuracy(y_pred, Y)))
 
