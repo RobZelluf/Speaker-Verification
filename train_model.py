@@ -55,5 +55,6 @@ for i in range(iterations):
     optimizer.step()
 
     if i % 50 == 0:
-        print("Iteration {} out of {}. Loss: {:.3f}. Accuracy {:.3f}.".format(i, iterations, loss.detach(), get_accuracy(y_pred, y_train_batch)))
+        y_test_pred = model(X_test)
+        print("Iteration {} out of {}. Loss: {:.3f}. Accuracy {:.3f}.".format(i, iterations, loss.detach(), get_accuracy(y_test_pred, y_test)))
 
