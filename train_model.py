@@ -67,7 +67,6 @@ for i in range(epochs):
         loss.backward()
         optimizer.step()
 
-    if i % 10 == 0:
-        y_test_pred = model(X_test)
-        print("Epoch {} out of {}. Loss: {:.3f}. Accuracy {:.3f}.".format(i, epochs, loss.detach(), get_accuracy(y_test_pred, y_test)))
-        torch.save(model, "models/CNN.pth")
+    y_test_pred = model(X_test)
+    print("Epoch {} out of {}. Loss: {:.3f}. Accuracy {:.3f}.".format(i, epochs, loss.detach(), get_accuracy(y_test_pred, y_test)))
+    torch.save(model, "models/CNN.pth")
