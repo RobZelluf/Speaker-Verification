@@ -9,7 +9,8 @@ if torch.cuda.is_available():
     torch.cuda.set_device(0)
 
 X, Y = read_data()
-input_size = X.shape[1]
+print(X.shape)
+input_size = (X.shape[1], X.shape[2])
 num_speakers = max(Y)
 m = X.shape[0]
 
@@ -34,8 +35,6 @@ for i in range(iterations):
             X[i * batch_size: (i + 1) * batch_size, ],
             Y[i * batch_size: (i + 1) * batch_size, ],
         )
-
-
 
         X_local_minibatch = X_local_minibatch.permute(0, 2, 1)
         print(X_local_minibatch.shape)

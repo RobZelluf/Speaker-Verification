@@ -13,7 +13,7 @@ class LSTM(nn.Module):
         self.num_layers = num_layers
 
         # setup LSTM layer
-        self.lstm = nn.LSTM(self.input_dim, self.hidden_dim, self.num_layers)
+        self.lstm = nn.GRU(self.input_dim, self.hidden_dim, self.num_layers)
 
         # setup output layer
         self.linear = nn.Linear(self.hidden_dim, output_dim)
