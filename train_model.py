@@ -39,7 +39,7 @@ model = Model(num_speakers)
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 criterion = torch.nn.NLLLoss()
 
-batch_size = 100
+batch_size = 200
 
 iterations = 100000
 for i in range(iterations):
@@ -54,5 +54,6 @@ for i in range(iterations):
     loss.backward()
     optimizer.step()
 
-    print("Iteration {} out of {}. Loss: {:.3f}. Accuracy {:.3f}.".format(i, iterations, loss.detach(), get_accuracy(y_pred, y_train_batch)))
+    if i % 50 == 0:
+        print("Iteration {} out of {}. Loss: {:.3f}. Accuracy {:.3f}.".format(i, iterations, loss.detach(), get_accuracy(y_pred, y_train_batch)))
 
