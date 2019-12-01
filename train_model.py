@@ -56,6 +56,5 @@ for i in range(iterations):
     loss.backward()
     optimizer.step()
 
-    y_pred = model(X)
-    print("Iteration {} out of {}. Loss: {:.3f}. Accuracy {:.3f}.".format(i, iterations, loss.detach(), get_accuracy(y_pred, Y)))
+    print("Iteration {} out of {}. Loss: {:.3f}. Accuracy {:.3f}.".format(i, iterations, loss.detach(), get_accuracy(y_pred, y_train_batch)))
 
