@@ -69,4 +69,7 @@ for i in range(epochs):
 
     y_test_pred = model(X_test)
     print("Epoch {} out of {}. Loss: {:.3f}. Accuracy {:.3f}.".format(i, epochs, loss.detach(), get_accuracy(y_test_pred, y_test)))
+
+    y_train_pred = Model(X_train)
+    print("Train accuracy {:.3f}".format(get_accuracy(y_train_pred, y_train)))
     torch.save(model, "models/CNN.pth")
