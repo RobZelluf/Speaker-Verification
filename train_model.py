@@ -36,7 +36,7 @@ y_test = torch.from_numpy(y_test)
 m_train = X_train.shape[0]
 
 model = Model(num_speakers)
-optimizer = optim.Adam(model.parameters(), lr=0.001)
+optimizer = optim.Adam(model.parameters(), lr=0.0001)
 criterion = torch.nn.NLLLoss()
 
 batch_size = 200
