@@ -8,6 +8,9 @@ from sklearn.model_selection import KFold
 import random
 import math
 
+import warnings
+warnings.filterwarnings("ignore")
+
 if torch.cuda.is_available():
     print("Using GPU!")
     torch.cuda.set_device(0)
