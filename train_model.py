@@ -47,6 +47,8 @@ for i in range(iterations):
     X_train_batch = X_train[batch_mask]
     y_train_batch = y_train[batch_mask]
 
+    print(X_train_batch)
+
     y_pred = model(X_train_batch)
 
     optimizer.zero_grad()
