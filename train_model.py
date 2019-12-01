@@ -4,6 +4,9 @@ from CNN import *
 import torch
 import torch.nn.functional as F
 from sklearn.model_selection import train_test_split
+from sklearn.model_selection import KFold
+import random
+import math
 
 if torch.cuda.is_available():
     print("Using GPU!")
@@ -40,21 +43,28 @@ optimizer = optim.Adam(model.parameters(), lr=0.0001)
 criterion = torch.nn.NLLLoss()
 
 batch_size = 200
+batches = math.ceil(m_train / batch_size)
 
-iterations = 100000
-for i in range(iterations):
-    batch_mask = np.random.choice(m_train - 1, batch_size)
-    X_train_batch = X_train[batch_mask]
-    y_train_batch = y_train[batch_mask]
+epochs = 100000
+for i in range(epochs):
+    indices = list(range(m_train))
+    random.shuffle(indices)
+    total = []
+    for j in range(batches):
+        start = j * batch_size
+        batch_indices = indices[start:start + batch_size]
+        total.extend(batch_indices)
+        X_train_batch = X_train[batch_indices]
+        y_train_batch = y_train[batch_indices]
 
-    y_pred = model(X_train_batch)
+        y_pred = model(X_train_batch)
 
-    optimizer.zero_grad()
-    loss = criterion(y_pred, y_train_batch)
-    loss.backward()
-    optimizer.step()
+        optimizer.zero_grad()
+        loss = criterion(y_pred, y_train_batch)
+        loss.backward()
+        optimizer.step()
 
-    if i % 50 == 0:
+    if i % 10 == 0:
         y_test_pred = model(X_test)
-        print("Iteration {} out of {}. Loss: {:.3f}. Accuracy {:.3f}.".format(i, iterations, loss.detach(), get_accuracy(y_test_pred, y_test)))
+        print("Epoch {} out of {}. Loss: {:.3f}. Accuracy {:.3f}.".format(i, epochs, loss.detach(), get_accuracy(y_test_pred, y_test)))
 
