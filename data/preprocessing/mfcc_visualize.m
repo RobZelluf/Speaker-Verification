@@ -2,3 +2,4 @@
 y = y(1:32000);
 mfccs = mfcc(y, fs, 'WindowLength', 320, 'OverlapLength', 160, 'NumCoeffs', 29);
 imagesc(mfccs')
+
