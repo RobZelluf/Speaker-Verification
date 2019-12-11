@@ -11,7 +11,7 @@ ID = 0
 speaker_ids = dict()
 
 for file in os.listdir(DIR):
-    if "norm" not in file:
+    if "norm" in file:
         continue
 
     speaker_ids[file] = ID
