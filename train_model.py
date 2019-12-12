@@ -81,13 +81,8 @@ for i in range(epochs):
     test_acc = get_accuracy(y_test_pred, y_test)
     print("Epoch {} out of {}. Loss: {:.3f}. Accuracy {:.3f}.".format(i, epochs, loss.detach(), test_acc))
 
-    y_train_pred, _ = model(X_train)
-    train_acc = get_accuracy(y_train_pred, y_train)
-    print("Train accuracy {:.3f}".format(train_acc))
-
-    train_accs.append(train_acc)
     test_accs.append(test_acc)
 
     torch.save(model, "models/" + DIR + "/CNN.pth")
     with open("models/" + DIR + "/performance.p", "wb") as f:
-        pickle.dump([train_accs, test_accs], f)
+        pickle.dump(test_accs, f)
