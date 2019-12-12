@@ -26,7 +26,9 @@ class Model(nn.Module):
         x = x.view(-1, (4 * 13 * 98))
 
         x = F.relu(self.linear1(x))
+        embedding = x
+
         x = F.relu(self.linear2(x))
         x = F.softmax(x)
-        return x
+        return x, embedding
 

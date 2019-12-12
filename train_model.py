@@ -64,18 +64,18 @@ for i in range(epochs):
         X_train_batch = X_train[batch_indices]
         y_train_batch = y_train[batch_indices]
 
-        y_pred = model(X_train_batch)
+        y_pred, _ = model(X_train_batch)
 
         optimizer.zero_grad()
         loss = criterion(y_pred, y_train_batch)
         loss.backward()
         optimizer.step()
 
-    y_test_pred = model(X_test)
+    y_test_pred, _ = model(X_test)
     test_acc = get_accuracy(y_test_pred, y_test)
     print("Epoch {} out of {}. Loss: {:.3f}. Accuracy {:.3f}.".format(i, epochs, loss.detach(), test_acc))
 
-    y_train_pred = model(X_train)
+    y_train_pred, _ = model(X_train)
     train_acc = get_accuracy(y_train_pred, y_train)
     print("Train accuracy {:.3f}".format(train_acc))
 
