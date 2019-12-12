@@ -28,7 +28,7 @@ class Model(nn.Module):
         lstm_out, hidden = self.lstm(x)
         x = self.linear1(lstm_out[-1])
         x = self.linear2(x)
-        pred = F.log_softmax(x, dim=1)
+        pred = F.softmax(x)
         return pred
 
     def get_accuracy(self, logits, target):
