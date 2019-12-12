@@ -26,11 +26,9 @@ class Model(nn.Module):
         )
 
     def forward(self, x):
-        print(x.shape)
         lstm_out, hidden = self.lstm(x)
         logits = self.linear(lstm_out[-1])
         pred = F.log_softmax(logits, dim=1)
-        print(pred.shape)
         return pred
 
     def get_accuracy(self, logits, target):
