@@ -19,7 +19,7 @@ Y = torch.from_numpy(Y)
 
 batch_size = 20
 
-model = LSTM(input_size, 256, batch_size, num_speakers)
+model = Model(input_size, 256, batch_size, num_speakers)
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 criterion = torch.nn.MSELoss()
 

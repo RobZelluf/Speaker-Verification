@@ -29,6 +29,7 @@ for i in range(num_speakers):
             indices.append(j)
 
     embeddings = model(X[indices])
+    print(embeddings.shape)
 
     with open("embeddings/" + DIR + "/" + str(i) + ".p", "wb") as f:
         pickle.dump(embeddings, f)

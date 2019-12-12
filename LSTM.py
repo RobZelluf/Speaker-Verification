@@ -4,16 +4,17 @@ import torch.optim as optim
 import torch.nn.functional as F
 
 
-class LSTM(nn.Module):
-    def __init__(self, input_dim, hidden_dim, batch_size, output_dim=8, num_layers=2):
-        super(LSTM, self).__init__()
+class Model(nn.Module):
+    def __init__(self, input_dim, batch_size, output_dim=8, hidden_dim = 64, num_layers=2):
+        super(Model, self).__init__()
         self.input_dim = input_dim
         self.hidden_dim = hidden_dim
         self.batch_size = batch_size
         self.num_layers = num_layers
 
         # setup LSTM layer
-        self.lstm = nn.GRU(self.input_dim, self.hidden_dim, self.num_layers)
+        print(self.input_dim, self.hidden_dim)
+        self.lstm = nn.LSTM(self.input_dim[0], self.hidden_dim, self.num_layers)
 
         # setup output layer
         self.linear = nn.Linear(self.hidden_dim, output_dim)
@@ -25,9 +26,11 @@ class LSTM(nn.Module):
         )
 
     def forward(self, x):
+        print(x.shape)
         lstm_out, hidden = self.lstm(x)
         logits = self.linear(lstm_out[-1])
         pred = F.log_softmax(logits, dim=1)
+        print(pred.shape)
         return pred
 
     def get_accuracy(self, logits, target):
