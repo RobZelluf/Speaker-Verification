@@ -73,7 +73,7 @@ for i in range(epochs):
         X_train_batch = X_train[batch_indices]
         y_train_batch = y_train[batch_indices]
 
-        X_train_batch = X_train_batch.reshape((input_dim[1], 500, input_dim[0]))
+        X_train_batch = X_train_batch.reshape((input_dim[1], X_train_batch.shape[0], input_dim[0]))
 
         y_pred = model(X_train_batch)
         avg_acc.append(get_accuracy(y_pred, y_train_batch))

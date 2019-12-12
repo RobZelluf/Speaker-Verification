@@ -13,7 +13,6 @@ class Model(nn.Module):
         self.num_layers = num_layers
 
         # setup LSTM layer
-        print(self.input_dim, self.hidden_dim)
         self.lstm = nn.LSTM(self.input_dim[0], self.hidden_dim, self.num_layers)
 
         # setup output layer
