@@ -15,8 +15,7 @@ class Model(nn.Module):
         self.lstm = nn.LSTM(self.input_dim[0], 64, self.num_layers)
 
         # setup output layer
-        self.linear1 = nn.Linear(64, 128)
-        self.linear2 = nn.Linear(128, output_dim)
+        self.linear1 = nn.Linear(4 * 64, output_dim)
 
     def init_hidden(self):
         return (
@@ -26,8 +25,10 @@ class Model(nn.Module):
 
     def forward(self, x):
         lstm_out, hidden = self.lstm(x)
-        x = self.linear1(lstm_out[-1])
-        x = self.linear2(x)
+        x = torch.cat((hidden[0], hidden[1]))
+        x = x.view(-1, (4 * 64))
+
+        x = self.linear1(x)
         pred = F.softmax(x)
         return pred
 
