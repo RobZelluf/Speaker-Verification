@@ -8,9 +8,15 @@ from sklearn.model_selection import KFold
 import random
 import math
 import pickle
+import os
 
 import warnings
 warnings.filterwarnings("ignore")
+
+DIR = input("Save mode in directory:")
+
+if not os.path.exists("models/" + DIR):
+    os.mkdir("models/" + DIR)
 
 if torch.cuda.is_available():
     print("Using GPU!")
@@ -82,6 +88,6 @@ for i in range(epochs):
     train_accs.append(train_acc)
     test_accs.append(test_acc)
 
-    torch.save(model, "models/CNN1/CNN.pth")
-    with open("models/CNN1/performance.p", "wb") as f:
+    torch.save(model, "models/" + DIR + "/CNN.pth")
+    with open("models/" + DIR + "/performance.p", "wb") as f:
         pickle.dump([train_accs, test_accs], f)
