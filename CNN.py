@@ -23,8 +23,6 @@ class Model(nn.Module):
         x = F.relu(self.conv3(x))
 
         x = self.pool(x)
-        print(x.shape)
-
         x = x.view(-1, (self.lin_size))
 
         x = F.relu(self.linear1(x))
