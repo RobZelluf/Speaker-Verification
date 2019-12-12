@@ -12,11 +12,11 @@ class Model(nn.Module):
         self.num_layers = num_layers
 
         # setup LSTM layer
-        self.lstm = nn.LSTM(self.input_dim[0], 512, self.num_layers)
+        self.lstm = nn.LSTM(self.input_dim[0], 256, self.num_layers)
 
         # setup output layer
-        self.linear1 = nn.Linear(512, 265)
-        self.linear2 = nn.Linear(265, output_dim)
+        self.linear1 = nn.Linear(256, 128)
+        self.linear2 = nn.Linear(128, output_dim)
 
     def init_hidden(self):
         return (
