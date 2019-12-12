@@ -14,9 +14,13 @@ import warnings
 warnings.filterwarnings("ignore")
 
 DIR = "LSTM"
+model_loaded = False
 
 if not os.path.exists("models/" + DIR):
     os.mkdir("models/" + DIR)
+else:
+    model = torch.load("models/" + DIR + "/CNN.pth")
+    model_loaded = True
 
 if torch.cuda.is_available():
     print("Using GPU!")
@@ -54,7 +58,11 @@ m_train = X_train.shape[0]
 batch_size = 128
 batches = math.ceil(m_train / batch_size)
 
-model = Model(input_dim, batch_size, num_speakers)
+if not model_loaded:
+    model = Model(input_dim, batch_size, num_speakers)
+else:
+    print("Not creating model, already loaded!")
+
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 criterion = torch.nn.NLLLoss()
 
@@ -68,8 +76,6 @@ for i in range(epochs):
     total = []
     avg_acc = []
     for j in range(batches):
-        if j % 10 == 0:
-            print("Batch", j, "out of", batches)
         start = j * batch_size
         batch_indices = indices[start:start + batch_size]
         total.extend(batch_indices)
