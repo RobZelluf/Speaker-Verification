@@ -24,7 +24,6 @@ if torch.cuda.is_available():
 
 
 def get_accuracy(logits, target):
-    return 1
     """ compute accuracy for training round """
     corrects = (
             torch.max(logits, 1)[1].view(target.size()).data == target.data
