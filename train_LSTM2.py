@@ -75,6 +75,7 @@ for i in range(epochs):
     random.shuffle(indices)
     total = []
     avg_acc = []
+    avg_loss = []
     for j in range(batches):
         start = j * batch_size
         batch_indices = indices[start:start + batch_size]
@@ -88,12 +89,13 @@ for i in range(epochs):
 
         optimizer.zero_grad()
         loss = criterion(y_pred, y_train_batch)
+        avg_loss.append(loss.detach())
         loss.backward()
         optimizer.step()
 
     y_test_pred = model(X_test)
     test_acc = get_accuracy(y_test_pred, y_test)
-    print("Epoch {} out of {}. Loss: {:.3f}. Train-accuracy {:.3f}. Test-accuracy {:.3f}.".format(i, epochs, loss.detach(), np.mean(avg_acc), test_acc))
+    print("Epoch {} out of {}. Loss: {:.3f}. Train-accuracy {:.3f}. Test-accuracy {:.3f}.".format(i, epochs, np.mean(avg_loss), np.mean(avg_acc), test_acc))
 
     test_accs.append(test_acc)
 
