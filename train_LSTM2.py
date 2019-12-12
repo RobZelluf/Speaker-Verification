@@ -38,18 +38,20 @@ num_speakers = max(Y + 1)
 
 input_dim = (X.shape[1], X.shape[2])
 X = X.reshape((m, input_dim[1], input_dim[0]))
-# X = X.reshape((input_dim[1], m, input_dim[0]))
 
 X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2)
 
 X_train = torch.from_numpy(X_train)
+
 X_test = torch.from_numpy(X_test)
+X_test = X_test.reshape((input_dim[1], X_test.shape[0], input_dim[0]))
+
 y_train = torch.from_numpy(y_train)
 y_test = torch.from_numpy(y_test)
 
 m_train = X_train.shape[0]
 
-batch_size = 128
+batch_size = 256
 batches = math.ceil(m_train / batch_size)
 
 model = Model(input_dim, batch_size, num_speakers)
@@ -75,7 +77,6 @@ for i in range(epochs):
         y_train_batch = y_train[batch_indices]
 
         X_train_batch = X_train_batch.reshape((input_dim[1], X_train_batch.shape[0], input_dim[0]))
-
         y_pred = model(X_train_batch)
         avg_acc.append(get_accuracy(y_pred, y_train_batch))
 
