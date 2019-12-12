@@ -67,6 +67,8 @@ for i in range(epochs):
     total = []
     avg_acc = []
     for j in range(batches):
+        if j % 10 == 0:
+            print("Batch", j, "out of", batches)
         start = j * batch_size
         batch_indices = indices[start:start + batch_size]
         total.extend(batch_indices)
