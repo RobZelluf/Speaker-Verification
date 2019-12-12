@@ -55,7 +55,7 @@ batch_size = 256
 batches = math.ceil(m_train / batch_size)
 
 model = Model(input_dim, batch_size, num_speakers)
-optimizer = optim.Adam(model.parameters(), lr=0.0001)
+optimizer = optim.Adam(model.parameters(), lr=0.001)
 criterion = torch.nn.NLLLoss()
 
 epochs = 100000
