@@ -7,6 +7,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.model_selection import KFold
 import random
 import math
+import pickle
 
 import warnings
 warnings.filterwarnings("ignore")
@@ -49,6 +50,9 @@ batch_size = 200
 batches = math.ceil(m_train / batch_size)
 
 epochs = 100000
+
+train_accs = []
+test_accs = []
 for i in range(epochs):
     indices = list(range(m_train))
     random.shuffle(indices)
@@ -68,8 +72,16 @@ for i in range(epochs):
         optimizer.step()
 
     y_test_pred = model(X_test)
-    print("Epoch {} out of {}. Loss: {:.3f}. Accuracy {:.3f}.".format(i, epochs, loss.detach(), get_accuracy(y_test_pred, y_test)))
+    test_acc = get_accuracy(y_test_pred, y_test)
+    print("Epoch {} out of {}. Loss: {:.3f}. Accuracy {:.3f}.".format(i, epochs, loss.detach(), test_acc))
 
     y_train_pred = model(X_train)
-    print("Train accuracy {:.3f}".format(get_accuracy(y_train_pred, y_train)))
-    torch.save(model, "models/CNN.pth")
+    train_acc = get_accuracy(y_train_pred, y_train)
+    print("Train accuracy {:.3f}".format(train_acc))
+
+    train_accs.append(train_acc)
+    test_accs.append(test_acc)
+
+    torch.save(model, "models/CNN1/CNN.pth")
+    with open("models/CNN1/performance.p", "wb") as f:
+        pickle.dump([train_accs, test_accs], f)
