@@ -50,7 +50,7 @@ y_test = torch.from_numpy(y_test)
 
 m_train = X_train.shape[0]
 
-batch_size = 500
+batch_size = 128
 batches = math.ceil(m_train / batch_size)
 
 model = Model(input_dim, batch_size, num_speakers)
