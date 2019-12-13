@@ -12,7 +12,7 @@ class Model(nn.Module):
         self.num_layers = num_layers
 
         # setup LSTM layer
-        self.lstm = nn.LSTM(self.input_dim[0], 64, self.num_layers)
+        self.lstm = nn.RNN(self.input_dim[0], 64, self.num_layers)
 
         # setup output layer
         self.linear1 = nn.Linear(2 * 64, output_dim)
@@ -25,8 +25,7 @@ class Model(nn.Module):
 
     def forward(self, x):
         lstm_out, hidden = self.lstm(x)
-        x = hidden[0]
-        x = x.view(-1, (2 * 64))
+        x = hidden.view(-1, (2 * 64))
 
         x = self.linear1(x)
         pred = F.softmax(x)

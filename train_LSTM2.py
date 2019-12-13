@@ -16,15 +16,15 @@ warnings.filterwarnings("ignore")
 DIR = "LSTM"
 model_loaded = False
 
-if not os.path.exists("models/" + DIR):
-    os.mkdir("models/" + DIR)
-else:
-    model = torch.load("models/" + DIR + "/CNN.pth")
-    model_loaded = True
-
-if torch.cuda.is_available():
-    print("Using GPU!")
-    torch.cuda.set_device(0)
+# if not os.path.exists("models/" + DIR):
+#     os.mkdir("models/" + DIR)
+# else:
+#     model = torch.load("models/" + DIR + "/CNN.pth")
+#     model_loaded = True
+#
+# if torch.cuda.is_available():
+#     print("Using GPU!")
+#     torch.cuda.set_device(0)
 
 
 def get_accuracy(logits, target):
@@ -85,6 +85,7 @@ for i in range(epochs):
 
         X_train_batch = X_train_batch.reshape((input_dim[1], X_train_batch.shape[0], input_dim[0]))
         y_pred = model(X_train_batch)
+
         avg_acc.append(get_accuracy(y_pred, y_train_batch))
 
         optimizer.zero_grad()
