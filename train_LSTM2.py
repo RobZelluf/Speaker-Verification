@@ -13,14 +13,14 @@ import os
 import warnings
 warnings.filterwarnings("ignore")
 
-DIR = "LSTM"
+DIR = input("Model directory:")
 model_loaded = False
-#
-# if not os.path.exists("models/" + DIR):
-#     os.mkdir("models/" + DIR)
-# else:
-#     model = torch.load("models/" + DIR + "/CNN.pth")
-#     model_loaded = True
+
+if not os.path.exists("models/" + DIR):
+    os.mkdir("models/" + DIR)
+else:
+    model = torch.load("models/" + DIR + "/model.pth")
+    model_loaded = True
 
 if torch.cuda.is_available():
     print("Using GPU!")
@@ -103,6 +103,6 @@ for i in range(epochs):
 
     test_accs.append(test_acc)
 
-    torch.save(model, "models/" + DIR + "/CNN.pth")
+    torch.save(model, "models/" + DIR + "/model.pth")
     with open("models/" + DIR + "/performance.p", "wb") as f:
         pickle.dump(test_accs, f)
