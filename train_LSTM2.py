@@ -15,12 +15,12 @@ warnings.filterwarnings("ignore")
 
 DIR = "LSTM"
 model_loaded = False
-
-if not os.path.exists("models/" + DIR):
-    os.mkdir("models/" + DIR)
-else:
-    model = torch.load("models/" + DIR + "/CNN.pth")
-    model_loaded = True
+#
+# if not os.path.exists("models/" + DIR):
+#     os.mkdir("models/" + DIR)
+# else:
+#     model = torch.load("models/" + DIR + "/CNN.pth")
+#     model_loaded = True
 
 if torch.cuda.is_available():
     print("Using GPU!")
@@ -64,7 +64,7 @@ else:
     print("Not creating model, already loaded!")
 
 optimizer = optim.Adam(model.parameters(), lr=0.001)
-criterion = torch.nn.NLLLoss()
+criterion = torch.nn.CrossEntropyLoss()
 
 epochs = 100000
 
@@ -77,8 +77,8 @@ for i in range(epochs):
     avg_acc = []
     avg_loss = []
     for j in range(batches):
-        if j == batches - 1:
-            continue
+        # if j == batches - 1:
+        #     continue
 
         start = j * batch_size
         batch_indices = indices[start:start + batch_size]

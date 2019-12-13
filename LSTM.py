@@ -16,7 +16,7 @@ class Model(nn.Module):
         self.lstm = nn.RNN(input_dim[0], self.hidden_dim, self.num_layers, batch_first=True)
 
         # setup output layer
-        self.linear1 = nn.Linear(self.hidden_dim, 700)
+        self.linear1 = nn.Linear(self.hidden_dim * self.input_dim[1], 700)
         self.linear2 = nn.Linear(700, output_dim)
 
     def init_hidden(self, batch_size):
@@ -32,7 +32,7 @@ class Model(nn.Module):
         hidden = self.init_hidden(batch_size)
 
         lstm_out, hidden = self.lstm(x, hidden)
-        x = lstm_out[-1].view(-1, self.hidden_dim)
+        x = lstm_out.contiguous().view(-1, self.hidden_dim * self.input_dim[1])
 
         x = self.linear1(x)
         x = self.linear2(x)
