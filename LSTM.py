@@ -5,7 +5,7 @@ import torch.nn.functional as F
 
 
 class Model(nn.Module):
-    def __init__(self, input_dim, batch_size, output_dim=8, num_layers=3):
+    def __init__(self, input_dim, batch_size, output_dim=8, num_layers=1):
         super(Model, self).__init__()
         self.input_dim = input_dim
         self.batch_size = batch_size
@@ -15,7 +15,7 @@ class Model(nn.Module):
         self.lstm = nn.RNN(self.input_dim[0], 64, self.num_layers)
 
         # setup output layer
-        self.linear1 = nn.Linear(3 * 64, output_dim)
+        self.linear1 = nn.Linear(self.num_layers * 64, output_dim)
 
     def init_hidden(self):
         return (
@@ -25,7 +25,7 @@ class Model(nn.Module):
 
     def forward(self, x):
         lstm_out, hidden = self.lstm(x)
-        x = hidden.view(-1, (3 * 64))
+        x = hidden.view(-1, (self.num_layers * 64))
 
         x = self.linear1(x)
         pred = F.softmax(x)
