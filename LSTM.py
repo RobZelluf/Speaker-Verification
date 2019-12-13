@@ -15,7 +15,8 @@ class Model(nn.Module):
         self.lstm = nn.RNN(self.input_dim[0], 64, self.num_layers)
 
         # setup output layer
-        self.linear1 = nn.Linear(self.num_layers * 64, output_dim)
+        self.linear1 = nn.Linear(self.num_layers * 64, 700)
+        self.linear2 = nn.Linear(700, output_dim)
 
     def init_hidden(self):
         return (
@@ -28,6 +29,8 @@ class Model(nn.Module):
         x = hidden.view(-1, (self.num_layers * 64))
 
         x = self.linear1(x)
+        x = self.linear2(x)
+
         pred = F.softmax(x)
         return pred
 
