@@ -16,11 +16,11 @@ warnings.filterwarnings("ignore")
 DIR = "LSTM"
 model_loaded = False
 
-if not os.path.exists("models/" + DIR):
-    os.mkdir("models/" + DIR)
-else:
-    model = torch.load("models/" + DIR + "/CNN.pth")
-    model_loaded = True
+# if not os.path.exists("models/" + DIR):
+#     os.mkdir("models/" + DIR)
+# else:
+#     model = torch.load("models/" + DIR + "/CNN.pth")
+#     model_loaded = True
 
 if torch.cuda.is_available():
     print("Using GPU!")
@@ -91,7 +91,7 @@ for i in range(epochs):
         optimizer.zero_grad()
         loss = criterion(y_pred, y_train_batch)
         avg_loss.append(loss.detach())
-        loss.backward()
+        loss.backward(retain_graph=True)
         optimizer.step()
 
     y_test_pred = model(X_test)

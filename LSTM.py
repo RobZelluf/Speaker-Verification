@@ -10,23 +10,25 @@ class Model(nn.Module):
         self.input_dim = input_dim
         self.batch_size = batch_size
         self.num_layers = num_layers
+        self.hidden_dim = 64
+        self.hidden = self.init_hidden()
 
         # setup LSTM layer
-        self.lstm = nn.RNN(self.input_dim[0], 64, self.num_layers)
+        self.lstm = nn.RNN(self.input_dim[0], self.hidden_dim, self.num_layers)
 
         # setup output layer
-        self.linear1 = nn.Linear(self.num_layers * 64, 700)
+        self.linear1 = nn.Linear(self.num_layers * self.hidden_dim, 700)
         self.linear2 = nn.Linear(700, output_dim)
 
     def init_hidden(self):
         return (
-            torch.zeros(self.num_layers, self.batch_size, self.hidden_dim),
-            torch.zeros(self.num_layers, self.batch_size, self.hidden_dim),
+            torch.zeros(self.num_layers, self.batch_size, self.hidden_dim)
         )
 
     def forward(self, x):
-        lstm_out, hidden = self.lstm(x)
-        x = hidden.view(-1, (self.num_layers * 64))
+        lstm_out, hidden = self.lstm(x, self.hidden)
+        self.hidden = hidden
+        x = hidden.view(-1, (self.num_layers * self.hidden_dim))
 
         x = self.linear1(x)
         x = self.linear2(x)
