@@ -10,7 +10,7 @@ class Model(nn.Module):
         self.input_dim = input_dim
         self.batch_size = input_dim[1]
         self.num_layers = num_layers
-        self.hidden_dim = 64
+        self.hidden_dim = 128
 
         # setup LSTM layer
         self.lstm = nn.RNN(input_dim[0], self.hidden_dim, self.num_layers, batch_first=True)
