@@ -8,26 +8,30 @@ class Model(nn.Module):
     def __init__(self, input_dim, batch_size, output_dim=8, num_layers=1):
         super(Model, self).__init__()
         self.input_dim = input_dim
-        self.batch_size = batch_size
+        self.batch_size = input_dim[1]
         self.num_layers = num_layers
         self.hidden_dim = 64
-        self.hidden = self.init_hidden()
 
         # setup LSTM layer
-        self.lstm = nn.RNN(self.input_dim[0], self.hidden_dim, self.num_layers)
+        self.lstm = nn.RNN(input_dim[0], self.hidden_dim, self.num_layers, batch_first=True)
 
         # setup output layer
         self.linear1 = nn.Linear(self.hidden_dim, 700)
         self.linear2 = nn.Linear(700, output_dim)
 
-    def init_hidden(self):
-        return (
-            torch.zeros(self.num_layers, self.batch_size, self.hidden_dim)
-        )
+    def init_hidden(self, batch_size):
+        # This method generates the first hidden state of zeros which we'll use in the forward pass
+        # We'll send the tensor holding the hidden state to the device we specified earlier as well
+        hidden = torch.zeros(self.num_layers, batch_size, self.hidden_dim)
+        return hidden
 
     def forward(self, x):
-        lstm_out, hidden = self.lstm(x, self.hidden)
-        self.hidden = hidden
+        batch_size = x.size(0)
+
+        # Initializing hidden state for first input using method defined below
+        hidden = self.init_hidden(batch_size)
+
+        lstm_out, hidden = self.lstm(x, hidden)
         x = lstm_out[-1].view(-1, self.hidden_dim)
 
         x = self.linear1(x)
