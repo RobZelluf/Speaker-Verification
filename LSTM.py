@@ -26,8 +26,8 @@ class Model(nn.Module):
         )
 
     def forward(self, x):
-        lstm_out, hidden = self.lstm(x)
-        self.hidden = hidden
+        lstm_out, hidden = self.lstm(x, self.hidden)
+        self.hidden = hidden.copy()
         x = hidden.view(-1, (self.num_layers * self.hidden_dim))
 
         x = self.linear1(x)
