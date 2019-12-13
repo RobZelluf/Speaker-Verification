@@ -17,7 +17,7 @@ class Model(nn.Module):
         self.lstm = nn.RNN(self.input_dim[0], self.hidden_dim, self.num_layers)
 
         # setup output layer
-        self.linear1 = nn.Linear(self.num_layers * self.hidden_dim, 700)
+        self.linear1 = nn.Linear(self.hidden_dim, 700)
         self.linear2 = nn.Linear(700, output_dim)
 
     def init_hidden(self):
@@ -27,8 +27,8 @@ class Model(nn.Module):
 
     def forward(self, x):
         lstm_out, hidden = self.lstm(x, self.hidden)
-        self.hidden = hidden.copy()
-        x = hidden.view(-1, (self.num_layers * self.hidden_dim))
+        self.hidden = hidden
+        x = lstm_out[-1].view(-1, self.hidden_dim)
 
         x = self.linear1(x)
         x = self.linear2(x)
