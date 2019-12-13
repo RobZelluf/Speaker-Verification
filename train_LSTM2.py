@@ -16,15 +16,15 @@ warnings.filterwarnings("ignore")
 DIR = "LSTM"
 model_loaded = False
 
-# if not os.path.exists("models/" + DIR):
-#     os.mkdir("models/" + DIR)
-# else:
-#     model = torch.load("models/" + DIR + "/CNN.pth")
-#     model_loaded = True
-#
-# if torch.cuda.is_available():
-#     print("Using GPU!")
-#     torch.cuda.set_device(0)
+if not os.path.exists("models/" + DIR):
+    os.mkdir("models/" + DIR)
+else:
+    model = torch.load("models/" + DIR + "/CNN.pth")
+    model_loaded = True
+
+if torch.cuda.is_available():
+    print("Using GPU!")
+    torch.cuda.set_device(0)
 
 
 def get_accuracy(logits, target):
