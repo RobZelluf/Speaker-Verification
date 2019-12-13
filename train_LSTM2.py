@@ -77,6 +77,9 @@ for i in range(epochs):
     avg_acc = []
     avg_loss = []
     for j in range(batches):
+        if j == batches - 1:
+            continue
+
         start = j * batch_size
         batch_indices = indices[start:start + batch_size]
         total.extend(batch_indices)

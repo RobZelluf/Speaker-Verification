@@ -26,7 +26,8 @@ class Model(nn.Module):
         )
 
     def forward(self, x):
-        lstm_out, hidden = self.lstm(x, self.hidden)
+        lstm_out, hidden = self.lstm(x)
+        print(hidden.shape)
         self.hidden = hidden
         x = hidden.view(-1, (self.num_layers * self.hidden_dim))
 
