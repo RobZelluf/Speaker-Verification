@@ -1,0 +1,14 @@
+Epoch 0 out of 100000. Loss: 3.020. Train-accuracy 13.802. Test-accuracy 20.861.
+Epoch 0 out of 100000. Loss: 3.025. Train-accuracy 13.243. Test-accuracy 17.346.
+Epoch 1 out of 100000. Loss: 2.883. Train-accuracy 28.280. Test-accuracy 24.343.
+Epoch 2 out of 100000. Loss: 2.783. Train-accuracy 38.428. Test-accuracy 28.417.
+Epoch 3 out of 100000. Loss: 2.712. Train-accuracy 45.345. Test-accuracy 31.866.
+Epoch 4 out of 100000. Loss: 2.652. Train-accuracy 51.416. Test-accuracy 34.396.
+Epoch 5 out of 100000. Loss: 2.596. Train-accuracy 56.901. Test-accuracy 36.268.
+Epoch 6 out of 100000. Loss: 2.559. Train-accuracy 60.699. Test-accuracy 38.305.
+Epoch 7 out of 100000. Loss: 2.517. Train-accuracy 64.955. Test-accuracy 38.502.
+Epoch 8 out of 100000. Loss: 2.489. Train-accuracy 67.784. Test-accuracy 40.473.
+Epoch 9 out of 100000. Loss: 2.470. Train-accuracy 69.645. Test-accuracy 40.210.
+Epoch 10 out of 100000. Loss: 2.443. Train-accuracy 72.336. Test-accuracy 42.477.
+Epoch 11 out of 100000. Loss: 2.428. Train-accuracy 73.801. Test-accuracy 42.543.
+Epoch 12 out of 100000. Loss: 2.412. Train-accuracy 75.472. Test-accuracy 42.608.
