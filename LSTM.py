@@ -9,7 +9,7 @@ class Model(nn.Module):
         super(Model, self).__init__()
         self.input_dim = input_dim
         self.batch_size = input_dim[1]
-        self.num_layers = 2
+        self.num_layers = num_layers
         self.hidden_dim = hidden_dim
         self.embedding_dim = embedding_dim
 
