@@ -134,7 +134,7 @@ for i in range(epochs):
         f.write(perf_string)
         f.write("\n")
 
-    test_accs.append([p.mean(avg_acc), test_acc])
+    test_accs.append([np.mean(avg_acc), test_acc])
 
     torch.save(model, "models/" + DIR + "/model.pth")
     with open("models/" + DIR + "/performance.p", "wb") as f:
