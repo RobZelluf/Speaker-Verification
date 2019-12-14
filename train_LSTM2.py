@@ -71,7 +71,7 @@ batch_size = 128
 batches = math.ceil(m_train / batch_size)
 
 if not model_loaded:
-    model = Model(input_dim, num_speakers, args.hidden_size, args.embedding_size)
+    model = Model(input_dim, num_speakers, args.hidden_size, args.embedding_size, args.num_layers)
 else:
     print("Not creating model, already loaded!")
 
