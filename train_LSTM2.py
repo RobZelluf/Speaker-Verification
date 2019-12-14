@@ -101,6 +101,7 @@ for i in range(epochs):
     indices = list(range(m_train))
     random.shuffle(indices)
     total = []
+
     avg_acc = []
     avg_loss = []
     for j in range(batches):
@@ -127,13 +128,13 @@ for i in range(epochs):
     y_test_pred = model(X_test)
     test_acc = get_accuracy(y_test_pred, y_test)
 
-    perf_string = "Epoch {} out of {}. Loss: {:.3f}. Train-accuracy {:.3f}. Test-accuracy {:.3f}.".format(i, epochs, np.mean(avg_loss), avg_acc, test_acc)
+    perf_string = "Epoch {} out of {}. Loss: {:.3f}. Train-accuracy {:.3f}. Test-accuracy {:.3f}.".format(i, epochs, np.mean(avg_loss), np.mean(avg_acc), test_acc)
     print(perf_string)
     with open("models/" + DIR + "/performance.txt", "a") as f:
         f.write(perf_string)
         f.write("\n")
 
-    test_accs.append([avg_acc, test_acc])
+    test_accs.append([p.mean(avg_acc), test_acc])
 
     torch.save(model, "models/" + DIR + "/model.pth")
     with open("models/" + DIR + "/performance.p", "wb") as f:
