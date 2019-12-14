@@ -54,11 +54,25 @@ num_speakers = max(Y + 1)
 
 input_dim = (X.shape[1], X.shape[2])
 X = X.reshape((m, input_dim[1], input_dim[0]))
+indices = list(range(len(X)))
 
-X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.2)
+if "train-test.p" not in os.listdir("models/" + DIR):
+    X_train, X_test, y_train, y_test, train_ind, test_ind = train_test_split(X, Y, indices, test_size=0.2)
+    with open("models/" + DIR + "/train-test.p", "wb") as f:
+        pickle.dump([train_ind, test_ind], f)
+        print("Train/test data saved!")
+else:
+    with open("models/" + DIR + "/train-test.p", "rb") as f:
+        train_ind, test_ind = pickle.load(f)
+        print("Train-test data loaded!")
+
+    X_train = X[train_ind]
+    X_test = X[test_ind]
+    y_train = Y[train_ind]
+    y_test = Y[test_ind]
+
 
 X_train = torch.from_numpy(X_train)
-
 X_test = torch.from_numpy(X_test)
 X_test = X_test.reshape((input_dim[1], X_test.shape[0], input_dim[0]))
 
@@ -72,6 +86,7 @@ batches = math.ceil(m_train / batch_size)
 
 if not model_loaded:
     model = Model(input_dim, num_speakers, args.hidden_size, args.embedding_size, args.num_layers)
+    torch.save(model, "models/" + DIR + "/model.pth")
 else:
     print("Not creating model, already loaded!")
 
@@ -111,9 +126,14 @@ for i in range(epochs):
 
     y_test_pred = model(X_test)
     test_acc = get_accuracy(y_test_pred, y_test)
-    print("Epoch {} out of {}. Loss: {:.3f}. Train-accuracy {:.3f}. Test-accuracy {:.3f}.".format(i, epochs, np.mean(avg_loss), np.mean(avg_acc), test_acc))
 
-    test_accs.append(test_acc)
+    perf_string = "Epoch {} out of {}. Loss: {:.3f}. Train-accuracy {:.3f}. Test-accuracy {:.3f}.".format(i, epochs, np.mean(avg_loss), avg_acc, test_acc)
+    print(perf_string)
+    with open("models/" + DIR + "/performance.txt", "a") as f:
+        f.write(perf_string)
+        f.write("\n")
+
+    test_accs.append([avg_acc, test_acc])
 
     torch.save(model, "models/" + DIR + "/model.pth")
     with open("models/" + DIR + "/performance.p", "wb") as f:
