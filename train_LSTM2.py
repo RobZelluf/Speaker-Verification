@@ -9,15 +9,27 @@ import random
 import math
 import pickle
 import os
+import argparse
 
 import warnings
 warnings.filterwarnings("ignore")
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--num_layers", type=int, default=1)
+parser.add_argument("--hidden_size", type=int, default=64)
+parser.add_argument("--embedding_size", type=int, default=700)
+args = parser.parse_args()
+
 
 DIR = input("Model directory:")
 model_loaded = False
 
 if not os.path.exists("models/" + DIR):
     os.mkdir("models/" + DIR)
+    with open("models/" + DIR + "/model.txt", "w") as f:
+        f.write("Num layers " + str(args.num_layers) + "\n")
+        f.write("Hidden size " + str(args.hidden_size) + "\n")
+        f.write("Embedding size " + str(args.embedding_size) + "\n")
 else:
     model = torch.load("models/" + DIR + "/model.pth")
     model_loaded = True
@@ -59,7 +71,7 @@ batch_size = 128
 batches = math.ceil(m_train / batch_size)
 
 if not model_loaded:
-    model = Model(input_dim, batch_size, num_speakers)
+    model = Model(input_dim, num_speakers, args.hidden_size, args.embedding_size)
 else:
     print("Not creating model, already loaded!")
 

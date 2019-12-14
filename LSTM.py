@@ -5,12 +5,17 @@ import torch.nn.functional as F
 
 
 class Model(nn.Module):
-    def __init__(self, input_dim, batch_size, output_dim=8, num_layers=1):
+    def __init__(self, input_dim, output_dim, hidden_dim=64, embedding_dim=700, num_layers=1):
         super(Model, self).__init__()
         self.input_dim = input_dim
         self.batch_size = input_dim[1]
         self.num_layers = num_layers
-        self.hidden_dim = 64
+        self.hidden_dim = hidden_dim
+        self.embedding_dim = embedding_dim
+
+        print("Num layers:", self.num_layers)
+        print("Hidden_dim:", self.hidden_dim)
+        print("Embedding_dim:", self.embedding_dim)
 
         # setup LSTM layer
         self.lstm = nn.RNN(input_dim[0], self.hidden_dim, self.num_layers, batch_first=True)
