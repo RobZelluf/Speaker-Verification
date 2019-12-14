@@ -2,18 +2,25 @@ import torch
 import numpy as np
 import pickle
 import matplotlib.pyplot as plt
+import os
 
-model = torch.load("models/new-CNN/CNN.pth")
+DIRs = os.listdir("models/")
+for i in range(len(DIRs)):
+    if DIRs[i][0] == "_":
+        continue
 
-embeddings = model.linear2.weight.data.numpy()
-embeddings = np.transpose(embeddings)
+    print(i, DIRs[i])
 
-np.save("embeddings/new-CNN/embeddings.npy", embeddings)
+dir_ind = int(input("Model number:"))
+DIR = DIRs[dir_ind]
 
-with open("models/CNN1/performance.p", "rb") as f:
-    train_accs, test_accs = pickle.load(f)
+model = torch.load("models/" + DIR + "/model.pth")
 
-plt.plot(train_accs)
+with open("models/" + DIR + "/performance.p", "rb") as f:
+    test_accs = pickle.load(f)
+
+print(test_accs)
+
 plt.plot(test_accs)
 plt.show()
 
