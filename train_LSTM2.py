@@ -129,7 +129,7 @@ for i in range(epochs):
     test_acc = get_accuracy(y_test_pred, y_test)
 
     perf_string = "Epoch {} out of {}. Loss: {:.3f}. Train-accuracy {:.3f}. Test-accuracy {:.3f}.".format(i, epochs, np.mean(avg_loss), np.mean(avg_acc), test_acc)
-    print(perf_string)
+    print(DIR, perf_string)
     with open("models/" + DIR + "/performance.txt", "a") as f:
         f.write(perf_string)
         f.write("\n")

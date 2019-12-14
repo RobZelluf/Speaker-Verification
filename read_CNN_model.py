@@ -19,8 +19,6 @@ model = torch.load("models/" + DIR + "/model.pth")
 with open("models/" + DIR + "/performance.p", "rb") as f:
     test_accs = pickle.load(f)
 
-print(test_accs)
-
 plt.plot(test_accs)
 plt.show()
 
