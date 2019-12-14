@@ -21,8 +21,8 @@ class Model(nn.Module):
         self.lstm = nn.RNN(input_dim[0], self.hidden_dim, self.num_layers, batch_first=True)
 
         # setup output layer
-        self.linear1 = nn.Linear(self.hidden_dim * self.input_dim[1], 700)
-        self.linear2 = nn.Linear(700, output_dim)
+        self.linear1 = nn.Linear(self.hidden_dim * self.input_dim[1], self.embedding_dim)
+        self.linear2 = nn.Linear(self.embedding_dim, output_dim)
 
     def init_hidden(self, batch_size):
         # This method generates the first hidden state of zeros which we'll use in the forward pass
