@@ -57,7 +57,7 @@ X = X.reshape((m, input_dim[1], input_dim[0]))
 indices = list(range(len(X)))
 
 if "train-test.p" not in os.listdir("models/" + DIR):
-    X_train, X_test, y_train, y_test, train_ind, test_ind = train_test_split(X, Y, indices, test_size=0.2)
+    X_train, X_test, y_train, y_test, train_ind, test_ind = train_test_split(X, Y, indices, test_size=0.2, stratify=Y)
     with open("models/" + DIR + "/train-test.p", "wb") as f:
         pickle.dump([train_ind, test_ind], f)
         print("Train/test data saved!")
@@ -70,7 +70,6 @@ else:
     X_test = X[test_ind]
     y_train = Y[train_ind]
     y_test = Y[test_ind]
-
 
 X_train = torch.from_numpy(X_train)
 X_test = torch.from_numpy(X_test)
@@ -95,8 +94,10 @@ criterion = torch.nn.CrossEntropyLoss()
 
 epochs = 100000
 
+best_test_acc = 0
+
 train_accs = []
-test_accs = []
+accuracies = []
 for i in range(epochs):
     indices = list(range(m_train))
     random.shuffle(indices)
@@ -134,8 +135,14 @@ for i in range(epochs):
         f.write(perf_string)
         f.write("\n")
 
-    test_accs.append([np.mean(avg_acc), test_acc])
+    accuracies.append([np.mean(avg_acc), test_acc])
 
-    torch.save(model, "models/" + DIR + "/model.pth")
+    if test_acc > best_test_acc:
+        best_test_acc = test_acc
+        torch.save(model, "models/" + DIR + "/model.pth")
+
+    if i % 10 == 0:
+        print("Best test accuracy:", best_test_acc)
+
     with open("models/" + DIR + "/performance.p", "wb") as f:
-        pickle.dump(test_accs, f)
+        pickle.dump(accuracies, f)
