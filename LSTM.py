@@ -12,6 +12,7 @@ class Model(nn.Module):
         self.num_layers = num_layers
         self.hidden_dim = hidden_dim
         self.embedding_dim = embedding_dim
+        self.linear_size = hidden_dim * input_dim[1] * 2
 
         print("Num layers:", self.num_layers)
         print("Hidden_dim:", self.hidden_dim)
@@ -21,8 +22,11 @@ class Model(nn.Module):
         self.lstm = nn.LSTM(input_dim[0], self.hidden_dim, self.num_layers, batch_first=True, bidirectional=True)
 
         # setup output layer
-        self.linear1 = nn.Linear(self.hidden_dim * self.input_dim[1] * 2, self.embedding_dim)
-        self.linear2 = nn.Linear(self.embedding_dim, output_dim)
+        self.linear1 = nn.Linear(self.linear_size, 512)
+        self.bn1 = nn.BatchNorm1d(512)
+        self.linear2 = nn.Linear(512, self.embedding_dim)
+        self.bn2 = nn.BatchNorm1d(self.embedding_dim)
+        self.linear3 = nn.Linear(self.embedding_dim, output_dim)
 
     def init_hidden(self, batch_size):
         # This method generates the first hidden state of zeros which we'll use in the forward pass
@@ -40,11 +44,13 @@ class Model(nn.Module):
 
         lstm_out, hidden = self.lstm(x, hidden)
         x = lstm_out.contiguous().view(-1, self.hidden_dim * self.input_dim[1] * 2)
-        x = self.linear1(x)
-        x = self.linear2(x)
+        x = F.relu(self.linear1(x))
+        x = self.bn1(x)
+        x = F.relu(self.linear2(x))
+        x = self.bn2(x)
+        x = F.softmax(self.linear3(x))
 
-        pred = F.softmax(x)
-        return pred
+        return x
 
     def get_accuracy(self, logits, target):
         """ compute accuracy for training round """
