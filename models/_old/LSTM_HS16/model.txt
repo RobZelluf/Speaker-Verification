@@ -1,0 +1,3 @@
+Num layers 1
+Hidden size 16
+Embedding size 350
