@@ -19,6 +19,10 @@ model = torch.load("models/" + DIR + "/model.pth")
 with open("models/" + DIR + "/performance.p", "rb") as f:
     accuracies = pickle.load(f)
 
+print("Train accuracy:", round(accuracies[-1][0], 2))
+print("Test accuracy:", round(accuracies[-1][1], 2))
+
 plt.plot(accuracies)
+plt.legend(["Train accuracy", "Test accuracy"])
 plt.show()
 
