@@ -17,8 +17,8 @@ DIR = DIRs[dir_ind]
 model = torch.load("models/" + DIR + "/model.pth")
 
 with open("models/" + DIR + "/performance.p", "rb") as f:
-    test_accs = pickle.load(f)
+    accuracies = pickle.load(f)
 
-plt.plot(test_accs)
+plt.plot(accuracies)
 plt.show()
 
