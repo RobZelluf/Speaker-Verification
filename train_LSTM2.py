@@ -89,7 +89,7 @@ if not model_loaded:
 else:
     print("Not creating model, already loaded!")
 
-optimizer = optim.Adam(model.parameters(), lr=0.001)
+optimizer = optim.Adam(model.parameters(), lr=0.0001)
 criterion = torch.nn.CrossEntropyLoss()
 
 epochs = 100000
