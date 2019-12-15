@@ -44,7 +44,6 @@ def get_accuracy(logits, target):
     accuracy = 100.0 * corrects / len(target)
     return accuracy.item()
 
-
 if full_data:
     X, Y = read_data("data/processed/full_data.p")
     print("Training on full dataset!")
