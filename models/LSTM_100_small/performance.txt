@@ -19,3 +19,4 @@ Epoch 17 out of 100000. Loss: 3.805. Train-accuracy 82.263. Test-accuracy 29.960
 Epoch 18 out of 100000. Loss: 3.794. Train-accuracy 83.290. Test-accuracy 29.960.
 Epoch 19 out of 100000. Loss: 3.784. Train-accuracy 84.256. Test-accuracy 29.902.
 Epoch 20 out of 100000. Loss: 3.776. Train-accuracy 85.126. Test-accuracy 29.526.
+Epoch 21 out of 100000. Loss: 3.767. Train-accuracy 86.033. Test-accuracy 29.137.
