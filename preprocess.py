@@ -2,7 +2,14 @@ import pickle as p
 import os
 import numpy as np
 
-DIR = "data/MFCC_Dumb/"
+full_set = True
+
+if full_set:
+    DIR = "data/large_set/"
+    print("Processing full set!")
+else:
+    DIR = "data/MFCC_Dumb/"
+    print("Processing small set!")
 
 X = []
 Y = []
@@ -11,8 +18,9 @@ ID = 0
 speaker_ids = dict()
 
 for file in os.listdir(DIR):
-    if "norm" not in file:
-        continue
+    if not full_set:
+        if "norm" not in file:
+            continue
 
     speaker_ids[file] = ID
 
@@ -30,15 +38,20 @@ for file in os.listdir(DIR):
     ID += 1
 
 print("Num speakers", ID)
-exit()
 X = np.array(X)
 Y = np.array(Y)
 
+if full_set:
+    filename = "data/processed/full_data.p"
+    filename2 = "data/processed/full_speaker_ids.p"
+else:
+    filename = "data/processed/data.p"
+    filename2 = "data/processed/speaker_ids.p"
 
-with open("data/processed/data.p", "wb") as f:
+with open(filename, "wb") as f:
     data = [X, Y]
     p.dump(data, f)
 
-with open("data/processed/speaker_ids.p", "wb") as f:
+with open(filename2, "wb") as f:
     p.dump(speaker_ids, f)
 
