@@ -80,7 +80,7 @@ y_test = torch.from_numpy(y_test)
 
 m_train = X_train.shape[0]
 
-batch_size = 128
+batch_size = int(m / 50)
 batches = math.ceil(m_train / batch_size)
 
 if not model_loaded:
