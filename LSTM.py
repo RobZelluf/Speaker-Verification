@@ -22,11 +22,12 @@ class Model(nn.Module):
         self.lstm = nn.LSTM(input_dim[0], self.hidden_dim, self.num_layers, batch_first=True, bidirectional=True)
 
         # setup output layer
-        self.linear1 = nn.Linear(self.linear_size, 256)
-        self.bn1 = nn.BatchNorm1d(256)
-        self.linear2 = nn.Linear(256, self.embedding_dim)
+        self.linear1 = nn.Linear(self.linear_size, 512)
+        self.bn1 = nn.BatchNorm1d(512)
+        self.linear2 = nn.Linear(512, 1024)
+        self.linear3 = nn.Linear(1024, self.embedding_dim)
         self.bn2 = nn.BatchNorm1d(self.embedding_dim)
-        self.linear3 = nn.Linear(self.embedding_dim, output_dim)
+        self.linear4 = nn.Linear(self.embedding_dim, output_dim)
 
     def init_hidden(self, batch_size):
         # This method generates the first hidden state of zeros which we'll use in the forward pass
@@ -47,8 +48,9 @@ class Model(nn.Module):
         x = F.relu(self.linear1(x))
         x = self.bn1(x)
         x = F.relu(self.linear2(x))
+        x = F.relu(self.linear3(x))
         x = self.bn2(x)
-        x = F.softmax(self.linear3(x))
+        x = F.softmax(self.linear4(x))
 
         return x
 
