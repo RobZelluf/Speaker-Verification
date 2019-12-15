@@ -29,6 +29,8 @@ for file in os.listdir(DIR):
 
     ID += 1
 
+print("Num speakers", ID)
+exit()
 X = np.array(X)
 Y = np.array(Y)
 
