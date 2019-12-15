@@ -204,3 +204,5 @@ Epoch 202 out of 100000. Loss: 4.251. Train-accuracy 98.938. Test-accuracy 81.35
 Epoch 203 out of 100000. Loss: 4.251. Train-accuracy 98.946. Test-accuracy 81.370.
 Epoch 204 out of 100000. Loss: 4.251. Train-accuracy 98.941. Test-accuracy 80.926.
 Epoch 205 out of 100000. Loss: 4.251. Train-accuracy 98.924. Test-accuracy 81.042.
+Epoch 206 out of 100000. Loss: 4.251. Train-accuracy 98.939. Test-accuracy 81.200.
+Epoch 207 out of 100000. Loss: 4.251. Train-accuracy 98.950. Test-accuracy 81.308.
