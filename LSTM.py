@@ -18,17 +18,17 @@ class Model(nn.Module):
         print("Embedding_dim:", self.embedding_dim)
 
         # setup LSTM layer
-        self.lstm = nn.LSTM(input_dim[0], self.hidden_dim, self.num_layers, batch_first=True)
+        self.lstm = nn.LSTM(input_dim[0], self.hidden_dim, self.num_layers, batch_first=True, bidirectional=True)
 
         # setup output layer
-        self.linear1 = nn.Linear(self.hidden_dim * self.input_dim[1], self.embedding_dim)
+        self.linear1 = nn.Linear(self.hidden_dim * self.input_dim[1] * 2, self.embedding_dim)
         self.linear2 = nn.Linear(self.embedding_dim, output_dim)
 
     def init_hidden(self, batch_size):
         # This method generates the first hidden state of zeros which we'll use in the forward pass
         # We'll send the tensor holding the hidden state to the device we specified earlier as well
-        hidden = (torch.rand(self.num_layers, batch_size, self.hidden_dim),
-                  torch.rand(self.num_layers, batch_size, self.hidden_dim))
+        hidden = (torch.rand(self.num_layers * 2, batch_size, self.hidden_dim),
+                  torch.rand(self.num_layers * 2, batch_size, self.hidden_dim))
 
         return hidden
 
@@ -39,7 +39,7 @@ class Model(nn.Module):
         hidden = self.init_hidden(seq_len)
 
         lstm_out, hidden = self.lstm(x, hidden)
-        x = lstm_out.contiguous().view(-1, self.hidden_dim * self.input_dim[1])
+        x = lstm_out.contiguous().view(-1, self.hidden_dim * self.input_dim[1] * 2)
         x = self.linear1(x)
         x = self.linear2(x)
 
