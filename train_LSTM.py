@@ -148,7 +148,7 @@ for i in range(epochs):
         torch.save(model, "models/" + DIR + "/model.pth")
 
     if i % 10 == 0:
-        print("Best test accuracy:", best_test_acc)
+        print("Best test accuracy:", round(best_test_acc, 2))
 
     with open("models/" + DIR + "/performance.p", "wb") as f:
         pickle.dump(accuracies, f)
