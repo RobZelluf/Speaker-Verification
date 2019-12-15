@@ -1,6 +1,6 @@
 import numpy as np
 from utils import read_data
-from LSTM import *
+from CNN import *
 import torch
 import torch.nn.functional as F
 from sklearn.model_selection import train_test_split
@@ -15,8 +15,6 @@ import warnings
 warnings.filterwarnings("ignore")
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--num_layers", type=int, default=1)
-parser.add_argument("--hidden_size", type=int, default=64)
 parser.add_argument("--embedding_size", type=int, default=700)
 args = parser.parse_args()
 
@@ -26,10 +24,6 @@ model_loaded = False
 
 if not os.path.exists("models/" + DIR):
     os.mkdir("models/" + DIR)
-    with open("models/" + DIR + "/model.txt", "w") as f:
-        f.write("Num layers " + str(args.num_layers) + "\n")
-        f.write("Hidden size " + str(args.hidden_size) + "\n")
-        f.write("Embedding size " + str(args.embedding_size) + "\n")
 else:
     model = torch.load("models/" + DIR + "/model.pth")
     model_loaded = True
@@ -53,7 +47,7 @@ m = X.shape[0]
 num_speakers = max(Y + 1)
 
 input_dim = (X.shape[1], X.shape[2])
-X = X.reshape((m, input_dim[1], input_dim[0]))
+X = X.reshape((m, 1, input_dim[0], input_dim[1]))
 indices = list(range(len(X)))
 
 if "train-test.p" not in os.listdir("models/" + DIR):
@@ -73,7 +67,6 @@ else:
 
 X_train = torch.from_numpy(X_train)
 X_test = torch.from_numpy(X_test)
-X_test = X_test.reshape((input_dim[1], X_test.shape[0], input_dim[0]))
 
 y_train = torch.from_numpy(y_train)
 y_test = torch.from_numpy(y_test)
@@ -84,8 +77,12 @@ batch_size = 128
 batches = math.ceil(m_train / batch_size)
 
 if not model_loaded:
-    model = Model(input_dim, num_speakers, args.hidden_size, args.embedding_size, args.num_layers)
+    model = Model(num_speakers, args.embedding_size)
     torch.save(model, "models/" + DIR + "/model.pth")
+
+    with open("models/" + DIR + "/model.txt", "w") as f:
+        f.write("Embedding size " + str(args.embedding_size) + "\n")
+        # TODO: print CNN dimensions
 else:
     print("Not creating model, already loaded!")
 
@@ -115,9 +112,7 @@ for i in range(epochs):
         X_train_batch = X_train[batch_indices]
         y_train_batch = y_train[batch_indices]
 
-        X_train_batch = X_train_batch.reshape((input_dim[1], X_train_batch.shape[0], input_dim[0]))
         y_pred = model(X_train_batch)
-
         avg_acc.append(get_accuracy(y_pred, y_train_batch))
 
         optimizer.zero_grad()
