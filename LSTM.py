@@ -44,7 +44,7 @@ class Model(nn.Module):
         # Initializing hidden state for first input using method defined below
         hidden = self.init_hidden(seq_len)
 
-        lstm_out, hidden = self.lstm(x, hidden)
+        lstm_out, _ = self.lstm(x)
         x = lstm_out.contiguous().view(-1, self.hidden_dim * self.input_dim[1] * 2)
 
         x = F.relu(self.linear1(x))
