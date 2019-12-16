@@ -88,6 +88,9 @@ X_test = X_test.reshape((input_dim[1], X_test.shape[0], input_dim[0]))
 y_train = torch.from_numpy(y_train)
 y_test = torch.from_numpy(y_test)
 
+X = []
+Y = []
+
 m_train = X_train.shape[0]
 
 batch_size = 128
