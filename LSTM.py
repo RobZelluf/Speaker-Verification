@@ -5,7 +5,7 @@ import torch.nn.functional as F
 
 
 class Model(nn.Module):
-    def __init__(self, input_dim, output_dim, hidden_dim=64, embedding_dim=700, num_layers=1):
+    def __init__(self, input_dim, output_dim, hidden_dim=32, embedding_dim=700, num_layers=1):
         super(Model, self).__init__()
         self.input_dim = input_dim
         self.batch_size = input_dim[1]
