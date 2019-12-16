@@ -12,11 +12,14 @@ class Model(nn.Module):
         self.num_layers = num_layers
         self.hidden_dim = hidden_dim
         self.embedding_dim = embedding_dim
+        print("Input:", self.input_dim)
         self.linear_size = hidden_dim * input_dim[1] * 2
 
         print("Num layers:", self.num_layers)
         print("Hidden_dim:", self.hidden_dim)
         print("Embedding_dim:", self.embedding_dim)
+
+        self.hidden = self.init_hidden(self.input_dim[1])
 
         # setup LSTM layer
         self.lstm = nn.LSTM(input_dim[0], self.hidden_dim, self.num_layers, batch_first=True, bidirectional=True)
@@ -40,15 +43,15 @@ class Model(nn.Module):
     def forward(self, x):
         seq_len = x.size(0)
         batch_size = x.size(1)
-        print("BS", batch_size)
 
-        # Initializing hidden state for first input using method defined below
-        hidden = self.init_hidden(seq_len)
+        # # Initializing hidden state for first input using method defined below
+        # hidden = self.init_hidden(seq_len)
 
-        lstm_out, hidden = self.lstm(x, hidden)
-        print(lstm_out.shape)
-        x = lstm_out.reshape(batch_size, seq_len, self.hidden_dim * 2)
-        # x = lstm_out.contiguous().view(-1, self.hidden_dim * self.input_dim[1] * 2)
+        lstm_out, hidden = self.lstm(x, self.hidden)
+        self.hidden = hidden
+
+        x = lstm_out.contiguous().view(-1, self.hidden_dim * self.input_dim[1] * 2)
+
         x = F.relu(self.linear1(x))
         x = self.bn1(x)
         x = F.relu(self.linear2(x))
