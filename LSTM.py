@@ -20,7 +20,7 @@ class Model(nn.Module):
         print("Embedding_dim:", self.embedding_dim)
 
         # setup LSTM layer
-        self.lstm = nn.LSTM(input_dim[0], self.hidden_dim, self.num_layers, batch_first=True, bidirectional=True)
+        self.lstm = nn.LSTM(input_dim[0], self.hidden_dim, self.num_layers, bidirectional=True)
 
         # setup output layer
         self.linear1 = nn.Linear(self.linear_size, 512)
