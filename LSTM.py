@@ -19,8 +19,6 @@ class Model(nn.Module):
         print("Hidden_dim:", self.hidden_dim)
         print("Embedding_dim:", self.embedding_dim)
 
-        self.hidden = self.init_hidden(self.input_dim[1])
-
         # setup LSTM layer
         self.lstm = nn.LSTM(input_dim[0], self.hidden_dim, self.num_layers, batch_first=True, bidirectional=True)
 
@@ -44,11 +42,10 @@ class Model(nn.Module):
         seq_len = x.size(0)
         batch_size = x.size(1)
 
-        # # Initializing hidden state for first input using method defined below
-        # hidden = self.init_hidden(seq_len)
+        # Initializing hidden state for first input using method defined below
+        hidden = self.init_hidden(seq_len)
 
-        lstm_out, hidden = self.lstm(x, (self.hidden[0].detach(), self.hidden[1].detach()))
-        self.hidden = hidden
+        lstm_out, hidden = self.lstm(x, hidden)
 
         x = lstm_out.contiguous().view(-1, self.hidden_dim * self.input_dim[1] * 2)
 
