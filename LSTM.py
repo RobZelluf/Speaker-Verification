@@ -5,7 +5,7 @@ import torch.nn.functional as F
 
 
 class Model(nn.Module):
-    def __init__(self, input_dim, output_dim, hidden_dim=64, embedding_dim=700, num_layers=1):
+    def __init__(self, input_dim, output_dim, hidden_dim=128, embedding_dim=700, num_layers=1):
         super(Model, self).__init__()
         self.input_dim = input_dim
         self.batch_size = input_dim[1]
@@ -39,12 +39,16 @@ class Model(nn.Module):
 
     def forward(self, x):
         seq_len = x.size(0)
+        batch_size = x.size(1)
+        print("BS", batch_size)
 
         # Initializing hidden state for first input using method defined below
         hidden = self.init_hidden(seq_len)
 
         lstm_out, hidden = self.lstm(x, hidden)
-        x = lstm_out.contiguous().view(-1, self.hidden_dim * self.input_dim[1] * 2)
+        print(lstm_out.shape)
+        x = lstm_out.reshape(batch_size, seq_len, self.hidden_dim * 2)
+        # x = lstm_out.contiguous().view(-1, self.hidden_dim * self.input_dim[1] * 2)
         x = F.relu(self.linear1(x))
         x = self.bn1(x)
         x = F.relu(self.linear2(x))
