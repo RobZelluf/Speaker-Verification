@@ -18,9 +18,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--embedding_size", type=int, default=700)
 args = parser.parse_args()
 
-full_data = False
-if input("Train on full dataset? (t/f)") == "t":
-    full_data = True
+num_speakers = int(input("Train on number of speakers (0=all):"))
 
 DIR = input("Model directory:")
 model_loaded = False
@@ -44,11 +42,12 @@ def get_accuracy(logits, target):
     accuracy = 100.0 * corrects / len(target)
     return accuracy.item()
 
-if full_data:
-    X, Y = read_data("data/processed/full_data.p")
-    print("Training on full dataset!")
-else:
-    X, Y = read_data()
+X, Y = read_data("data/processed/full_data.p")
+if num_speakers != 0:
+    cutoff = np.where(Y == num_speakers)[0][0]
+    print(cutoff)
+    X = X[:cutoff]
+    Y = Y[:cutoff]
 
 m = X.shape[0]
 num_speakers = max(Y + 1)
