@@ -25,8 +25,8 @@ class Model(nn.Module):
         # setup output layer
         self.linear1 = nn.Linear(self.linear_size, 512)
         self.bn1 = nn.BatchNorm1d(512)
-        self.linear2 = nn.Linear(512, 1024)
-        self.linear3 = nn.Linear(1024, self.embedding_dim)
+        self.linear2 = nn.Linear(512, 256)
+        self.linear3 = nn.Linear(256, self.embedding_dim)
         self.bn2 = nn.BatchNorm1d(self.embedding_dim)
         self.linear4 = nn.Linear(self.embedding_dim, output_dim)
 
@@ -40,13 +40,11 @@ class Model(nn.Module):
 
     def forward(self, x):
         seq_len = x.size(0)
-        batch_size = x.size(1)
 
         # Initializing hidden state for first input using method defined below
         hidden = self.init_hidden(seq_len)
 
         lstm_out, hidden = self.lstm(x, hidden)
-
         x = lstm_out.contiguous().view(-1, self.hidden_dim * self.input_dim[1] * 2)
 
         x = F.relu(self.linear1(x))
