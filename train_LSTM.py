@@ -16,7 +16,7 @@ warnings.filterwarnings("ignore")
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--num_layers", type=int, default=1)
-parser.add_argument("--hidden_size", type=int, default=128)
+parser.add_argument("--hidden_size", type=int, default=64)
 parser.add_argument("--embedding_size", type=int, default=700)
 args = parser.parse_args()
 
