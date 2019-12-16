@@ -49,10 +49,11 @@ class Model(nn.Module):
         x = self.bn1(x)
         x = F.relu(self.linear2(x))
         x = F.relu(self.linear3(x))
+        embedding = x
         x = self.bn2(x)
         x = F.softmax(self.linear4(x))
 
-        return x
+        return x, embedding
 
     def get_accuracy(self, logits, target):
         """ compute accuracy for training round """

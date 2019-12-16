@@ -122,7 +122,7 @@ for i in range(epochs):
         y_train_batch = y_train[batch_indices]
 
         X_train_batch = X_train_batch.reshape((input_dim[1], X_train_batch.shape[0], input_dim[0]))
-        y_pred = model(X_train_batch)
+        y_pred, _ = model(X_train_batch)
 
         avg_acc.append(get_accuracy(y_pred, y_train_batch))
 
@@ -132,7 +132,7 @@ for i in range(epochs):
         loss.backward(retain_graph=True)
         optimizer.step()
 
-    y_test_pred = model(X_test)
+    y_test_pred, _ = model(X_test)
     test_acc = get_accuracy(y_test_pred, y_test)
 
     perf_string = "Epoch {} out of {}. Loss: {:.3f}. Train-accuracy {:.3f}. Test-accuracy {:.3f}.".format(i, epochs, np.mean(avg_loss), np.mean(avg_acc), test_acc)
