@@ -29,9 +29,16 @@ with open("models/" + DIR + "/train-test.p", "rb") as f:
 print("Train samples:", len(train_ind))
 print("Test_samples:", len(test_ind))
 
+X = X[test_ind]
+Y = Y[test_ind]
+
 m = X.shape[0]
 input_dim = [X.shape[1], X.shape[2]]
 num_speakers = max(Y + 1)
+
+print("Training examples:", m)
+print("Number of speakers:", num_speakers)
+
 X = X.reshape((m, input_dim[0], input_dim[1]))
 X = torch.from_numpy(X)
 
