@@ -25,16 +25,6 @@ num_speakers = int(input("Train on number of speakers (0=all):"))
 DIR = input("Model directory:")
 model_loaded = False
 
-if not os.path.exists("models/" + DIR):
-    os.mkdir("models/" + DIR)
-    with open("models/" + DIR + "/model.txt", "w") as f:
-        f.write("Num layers " + str(args.num_layers) + "\n")
-        f.write("Hidden size " + str(args.hidden_size) + "\n")
-        f.write("Embedding size " + str(args.embedding_size) + "\n")
-else:
-    model = torch.load("models/" + DIR + "/model.pth")
-    model_loaded = True
-
 if torch.cuda.is_available():
     print("Using GPU!")
     torch.cuda.set_device(0)
@@ -59,6 +49,18 @@ if num_speakers != 0:
 m = X.shape[0]
 num_speakers = max(Y + 1)
 print("Number of speakers loaded:", num_speakers)
+
+if not os.path.exists("models/" + DIR):
+    os.mkdir("models/" + DIR)
+    with open("models/" + DIR + "/model.txt", "w") as f:
+        f.write("Num layers " + str(args.num_layers) + "\n")
+        f.write("Hidden size " + str(args.hidden_size) + "\n")
+        f.write("Embedding size " + str(args.embedding_size) + "\n")
+        f.write("Number of speakers " + str(num_speakers) + "\n")
+        f.write("Number of training examples " + str(m) + "\n")
+else:
+    model = torch.load("models/" + DIR + "/model.pth")
+    model_loaded = True
 
 input_dim = (X.shape[1], X.shape[2])
 X = X.reshape((m, input_dim[1], input_dim[0]))

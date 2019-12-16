@@ -87,7 +87,8 @@ if not model_loaded:
 
     with open("models/" + DIR + "/model.txt", "w") as f:
         f.write("Embedding size " + str(args.embedding_size) + "\n")
-        # TODO: print CNN dimensions
+        f.write("Number of speakers " + str(num_speakers) + "\n")
+        f.write("Training examples " + str(m) + "\n")
 else:
     print("Not creating model, already loaded!")
 
