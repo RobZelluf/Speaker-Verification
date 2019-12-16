@@ -45,7 +45,6 @@ def get_accuracy(logits, target):
 X, Y = read_data("data/processed/full_data.p")
 if num_speakers != 0:
     cutoff = np.where(Y == num_speakers)[0][0]
-    print(cutoff)
     X = X[:cutoff]
     Y = Y[:cutoff]
 
