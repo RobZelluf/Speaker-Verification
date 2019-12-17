@@ -1,1 +1,0 @@
-Epoch 0 out of 100000. Loss: 4.590. Train-accuracy 3.307. Test-accuracy 5.306.

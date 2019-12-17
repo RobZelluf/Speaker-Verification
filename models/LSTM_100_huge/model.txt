@@ -1,3 +1,0 @@
-Num layers 2
-Hidden size 128
-Embedding size 700
