@@ -39,10 +39,10 @@ class Model(nn.Module):
         return hidden
 
     def forward(self, x):
-        seq_len = x.size(0)
+        batch_size = x.size(1)
 
         # Initializing hidden state for first input using method defined below
-        hidden = self.init_hidden(seq_len)
+        hidden = self.init_hidden(batch_size)
 
         lstm_out, hidden = self.lstm(x, hidden)
         x = lstm_out.contiguous().view(-1, self.hidden_dim * self.input_dim[1] * 2)
