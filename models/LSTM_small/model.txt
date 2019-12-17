@@ -1,0 +1,5 @@
+Num layers 1
+Hidden size 16
+Embedding size 700
+Number of speakers 100
+Number of training examples 69259
