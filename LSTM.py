@@ -33,8 +33,8 @@ class Model(nn.Module):
     def init_hidden(self, batch_size):
         # This method generates the first hidden state of zeros which we'll use in the forward pass
         # We'll send the tensor holding the hidden state to the device we specified earlier as well
-        hidden = (torch.rand(self.num_layers * 2, batch_size, self.hidden_dim),
-                  torch.rand(self.num_layers * 2, batch_size, self.hidden_dim))
+        hidden = (torch.zeros(self.num_layers * 2, batch_size, self.hidden_dim),
+                  torch.zeros(self.num_layers * 2, batch_size, self.hidden_dim))
 
         return hidden
 
