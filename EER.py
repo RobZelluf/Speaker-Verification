@@ -7,13 +7,13 @@ from sklearn.metrics import auc
 from sklearn.metrics.pairwise import cosine_similarity
 import matplotlib.pyplot as plt
 
-def gen_pairs(num_pairs,num_speakers):
-    pairs = np.zeros((4*num_pairs*num_speakers,700))
-    correct_pairs = np.zeros((2*num_pairs*num_speakers,700))
-    incorrect_pairs = np.zeros((2*num_pairs*num_speakers,700))
+def gen_pairs(num_pairs):
+    pairs = np.zeros((4*num_pairs*2,700))
+    correct_pairs = np.zeros((2*num_pairs*2,700))
+    incorrect_pairs = np.zeros((2*num_pairs*2,700))
     # Sample pairs
-    for i in range(num_speakers):
-        emb_path = os.getcwd() + "/embeddings/test_embeddings/"
+    for i in range(2):
+        emb_path = os.getcwd() + "/embeddings/test2/"
         with open(emb_path + str(i) + ".p", "rb") as f:
             embeddings=pickle.load(f)
         emb_vecs = embeddings[1].detach().numpy()
@@ -22,11 +22,11 @@ def gen_pairs(num_pairs,num_speakers):
         incorrect_pairs[(2*num_pairs*i):(2*num_pairs*(i+1)),:] = emb_vecs[(2*num_pairs):(4*num_pairs),:]
 
 
-    pairs[0:(2*num_pairs*num_speakers),:] = correct_pairs
+    pairs[0:(2*num_pairs*2),:] = correct_pairs
     # Shuffle incorrect_pairs to make false matchings
-    for i in range(num_speakers):
+    for i in range(2):
         for j in range(2*num_pairs):
-            pairs_index = 2*num_pairs*num_speakers + j*num_speakers + i
+            pairs_index = 2*num_pairs*2 + j*2 + i
             pairs[pairs_index,:] = incorrect_pairs[(i*2*num_pairs + j),:]
             print(pairs_index, " , ", i*2*num_pairs+j)
     return pairs
@@ -41,13 +41,12 @@ def compute_cosine_similarities(pairs):
     return cos_sims
 
 plot = 1
-n_pairs = 12
-n_speakers = 22
+n_pairs = 100
 pairs = gen_pairs(n_pairs)
 cosine_similarities = compute_cosine_similarities(pairs)
 
-true_labels = np.zeros(n_pairs*2*n_speakers)
-true_labels[0:(n_pairs*n_speakers)] = np.ones(n_pairs*n_speakers)
+true_labels = np.zeros(n_pairs*2*2)
+true_labels[0:(n_pairs*2)] = np.ones(n_pairs*2)
 
 # Compute EER
 fp_rate, tp_rate, threshold = roc_curve(true_labels, cosine_similarities, pos_label=1)
