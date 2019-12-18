@@ -24,5 +24,7 @@ print("Test accuracy:", round(accuracies[-1][1], 2))
 
 plt.plot(accuracies)
 plt.legend(["Train accuracy", "Test accuracy"])
+plt.xlabel("Number of epochs")
+plt.ylabel("Accuracy (%)")
 plt.show()
 
